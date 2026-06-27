@@ -11,9 +11,22 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ─── CORS ──────────────────────────────────────────────────────────────────────
-// Allow requests from the React frontend dev server
+// Allow requests from both the local dev server and the deployed frontend
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000",
+  process.env.FRONTEND_URL,         // Netlify URL from environment variable
+].filter(Boolean);                  // remove undefined/empty entries
+
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:3000"],
+  origin: (origin, callback) => {
+    // Allow requests with no origin (e.g. curl, Postman, mobile apps)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error(`CORS: Origin '${origin}' not allowed.`));
+  },
   credentials: true,
 }));
 
