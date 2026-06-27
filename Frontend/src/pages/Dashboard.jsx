@@ -196,7 +196,16 @@ const Dashboard = () => {
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full text-sm table-fixed">
+              <colgroup>
+                <col style={{ width: '3%' }} />
+                <col style={{ width: '32%' }} />
+                <col style={{ width: '28%' }} />
+                <col style={{ width: '12%' }} />
+                <col style={{ width: '8%' }} />
+                <col style={{ width: '8%' }} />
+                <col style={{ width: '9%' }} />
+              </colgroup>
               <thead>
                 <tr className="bg-[#8B3103]/5 text-[#7a6152] text-left text-xs uppercase tracking-wider">
                   <th className="px-5 py-3 font-semibold">#</th>
@@ -214,10 +223,18 @@ const Dashboard = () => {
                   return (
                     <tr key={url._id} className="hover:bg-[#8B3103]/5 transition-colors">
                       <td className="px-5 py-4 text-[#7a6152]">{idx + 1}</td>
-                      <td className="px-5 py-4 max-w-[220px]">
-                        <span title={url.originalUrl} className="text-[#2d1a0e] cursor-default">
-                          {truncate(url.originalUrl)}
-                        </span>
+                      <td className="px-5 py-4">
+                        <div className="flex items-center gap-1 min-w-0">
+                          <a
+                            href={url.originalUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title={url.originalUrl}
+                            className="block truncate text-[#2d1a0e] hover:text-[#8B3103] hover:underline transition-colors"
+                          >
+                            {url.originalUrl}
+                          </a>
+                        </div>
                       </td>
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-2">
