@@ -1,0 +1,48 @@
+So, now my Goal is to make a project like TinyURL, The approach I am following 
+1. first User will give a ShortKey and a URL and our work will to be shortend the URL as TinyURL does that it adds it creates an endpoint "backendURL/ShortKey"
+
+2. This URL will only be Active till the User is Logged in, But the only thing that makes it unique it will store that URL and keyword and stores it in the database User have access to keep it active or deactivate it or delete it any time, So we can show it in the list of the URL's the user have created. No 2 users will not be able to create the same ShortKey, If someone tried to create a shortkey that is already present in the database, it will show an error that the ShortKey is already present in the database. 
+
+3. Database Schema
+Table 1 User(_id(UUID),name,email,password)
+Table 2 URLs(_id,userId,"OriginalURL,"Shortcode","isActive","CreatedAt","UpdatedAt")
+userID will refer to _id of User table (One to Many) one user can have multiple URLs
+
+4. Tech stack 
+ a. project should be stricly made on express.js. No next.js is allowed.
+ b. Database should be Supabase Use Drizzle for that there should be one DB:migrate and DB:push command 
+ c. Use Morgan middleware for logging 
+ d. Authentication should be handled using JWT tokens, we should have properly documented API for the same. 
+ e. also create one /health for testing 
+
+5. API Endpoints
+    a. POST /api/auth/signup
+    b. POST /api/auth/signin
+    c. POST /api/auth/signout
+    after user gives the shortkey and url we should save it to the database, And then a new endpoint is generated and shown on the front end as this is the new short url  /api/home/shortkey 
+
+ 6. How this whole system of URL works 
+    after user input main URl and short keyword
+    i. Verify JWT token 
+        if false: "Throw error" Login first 
+        if true: 
+            Check that shortkey already given to any other URL
+                if true: "Throw error" ShortKey already taken
+                    else: 
+                        validate URL    
+                            if valid URL:
+                                Save to database 
+                            else:
+                                "Throw error" Invalid URL
+    ii. Backend creates URL https://yourdomain.com/shortCode
+    and when some onclick this URL it should redirect to the original URL 
+    
+    iii. Now, User side(Make Sure that User don't need to Login or register anywhere he can access without any auth)
+    once someone goest to URL generated https://yourdomain.com/shortCode
+    if not found : throw error 404 
+    else: 
+        Check if isActive = true 
+            if false: throw error 400 This link is disabled
+            else: redirect to original URL
+            click++; in database 
+    

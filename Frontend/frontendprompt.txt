@@ -1,0 +1,32 @@
+1. Analyze my Backend file and create a React Frontend for it. Make a good looking and user-friendly UI for it. Also use Tailwind CSS for styling. 
+
+2. For Design Preference
+Create a simple Design for colour use "#EAE0CB" as main colour and for combination use "#8B3103" as accent colour.
+
+3. Now about other things Create a Navbar
+    there should only be a logo on left side that i will share with you on right there should be only login and register and when user login there should be only logout button and a button to redirect to dashboard.
+
+4. There should be one Home Page in which write small things about our self and a get started button in the button when user clicks it redirect to Login Page. and if user I have already login redirect it to the dashboard.
+
+5. Now about other things Create a Login Page 
+    there should be two input field for username and password and a button to submit and a text in the button "Login" and if user I have already login redirect it to the dashboard.
+    IF the error is come or everything is success then create a small animation like notification or something of a floating message in green colour if success or red colour if error. In the same way create register page for name and email field and password. 
+
+6. Now about other things create a Dashboard Page
+    there should be two test boxes one for URL and other one for shortkeyword when a user comes in the website he should give url and shorturl. 
+    then press enter
+    then whole process will occour 
+    1. it will check that keyword is already taken or not if taken then a error pop up in the same i have mentioned earlier. 
+    2. if keyword is not taken then it will check that is the URL is valid or not if valid then it will store it in the database otherwise through an error in the same way 
+
+    3. if everything is fine then it will show a success message and 
+    dashboard page should be also good looking and user-friendly. After that below it will show URL mainpage/keyword which will redirect it to the original URL.
+
+    4. Below these thing there should be list of all the URL that the person has created store in URL 
+    list columns(s.no,actual-url,short-url,keyword,click-count,active)
+    in active column use one toggle button to on and off the URL if on then in database it will still true in isActive column otherwise false.
+
+7. Now about other things create a page when a user type mainpage/keyword and press enter it will redirect it to the original URL.
+    Use rest calls to do all the things.
+
+You can do some changes in backend also to implement some features but most of the things are already done
